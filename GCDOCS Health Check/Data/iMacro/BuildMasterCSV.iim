@@ -1,0 +1,12 @@
+﻿SET !EXTRACT_TEST_POPUP NO
+
+'vars are offset by one, and 9 represents 1 - system name
+ADD !EXTRACT {{!VAR9}}
+ADD !EXTRACT {{!VAR2}}
+ADD !EXTRACT {{!VAR3}}
+ADD !EXTRACT {{!VAR4}}
+ADD !EXTRACT {{!VAR5}}
+ADD !EXTRACT {{!VAR6}}
+ADD !EXTRACT {{!VAR7}}
+ADD !EXTRACT {{!VAR8}}
+SAVEAS TYPE=EXTRACT FOLDER="{{!VAR0}}" FILE={{!VAR1}}

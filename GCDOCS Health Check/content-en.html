@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" dir="ltr">
+<!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+
+		<title>GCDOCS Health Check iMacro Scripts</title>
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<!-- Meta data -->
+		<meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities" />
+		<meta name="dcterms.title" content="Content page - No search, language toggle, site menu or breadcrumb trail - Web Experience Toolkit" />
+		<meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
+		<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+		<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+		<meta name="dcterms.subject" title="scheme" content="French subject terms / Termes de sujet en français" />
+		<meta name="dcterms.language" title="ISO639-2" content="eng" />
+		<!-- Meta data-->
+		<!--[if gte IE 9 | !IE ]><!-->
+		<link href="./theme-gc-intranet/assets/favicon.ico" rel="icon" type="image/x-icon" />
+		<link rel="stylesheet" href="./theme-gc-intranet/css/theme.css" />
+		<!--<![endif]-->
+
+<!--[if lt IE 9]>
+<link href="./theme-gc-intranet/assets/favicon.ico" rel="shortcut icon" />
+<link rel="stylesheet" href="./theme-gc-intranet/css/ie8-theme.css" />
+<script src="./js/jquery/1.11.1/jquery.js"></script>
+<script src="./wet-boew/js/ie8-wet-boew.js"></script>
+<![endif]-->
+
+		<noscript><link rel="stylesheet" href="./wet-boew/css/noscript.css" /></noscript>
+		<style>
+			.overlay-def header {
+				background: #2E5274 none repeat scroll 0%; !important
+			}
+		</style>
+	</head>
+	<body vocab="http://schema.org/" typeof="WebPage">
+
+	<ul id="wb-tphp">
+		<li class="wb-slc">
+			<a class="wb-sl" href="#wb-cont">Skip to main content</a>
+		</li>
+
+		<li class="wb-slc visible-sm visible-md visible-lg">
+			<a class="wb-sl" href="#wb-info">Skip to "About this site"</a>
+		</li>
+	</ul>
+
+	<header role="banner">
+		<div id="wb-bnr">
+			<div id="wb-bar">
+				<div class="container">
+					<div class="row">
+						<object id="gcwu-sig" type="image/svg+xml" tabindex="-1" role="img" data="./theme-gc-intranet/assets/sig-blk-en.svg" aria-label="Government of Canada"></object>
+
+						<section id="wb-lng"><h2>Language selection</h2>
+							<ul class="list-inline">
+								<li><a lang="fr" href="content-fr.html">Français</a></li>
+							</ul>
+						</section>
+
+						<section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
+							<h2>Search and menus</h2>
+							<ul class="pnl-btn list-inline text-right">
+								<li><a href="#mb-pnl" title="Search and menus" aria-controls="mb-pnl" class="overlay-lnk btn btn-sm btn-default" role="button"><span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">Search and menus</span></span></span></a></li>
+							</ul>
+							<div id="mb-pnl"></div>
+						</section>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div id="wb-sttl" class="col-md-12">
+						<a href="#">
+							<span>GCDOCS Health Check iMacro Scripts</span>
+						</a>
+						<object id="wmms" type="image/svg+xml" tabindex="-1" role="img" data="./theme-gc-intranet/assets/wmms-intra.svg" aria-label="Symbol of the Government of Canada"></object>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<span data-trgt="mb-pnl" class="wb-menu hide"></span>
+	</header>
+
+	<main role="main" property="mainContentOfPage" class="container">
+		<h1 id="wb-cont" property="name">GCDOCS Health Check iMacro Scripts</h1>
+
+		<div class="wb-tabs">
+			<div class="tabpanels">
+				<details id="details-panel1">
+					<summary>Health Check</summary>
+					<section>
+						<details class="alert alert-info" id="alert-info-en">
+							<summary class="h3">
+								<h3>Information for Health Check</h3>
+							</summary>
+							<p>This is the main page. It runs the Health Check on any GCDOCS instance. There are two functions:
+								<ul>
+									<li><strong>Run Health Check on Selected Instances :</strong> This is the main function. Choose one or more instances to run the health check agaisnt.</li>
+									<li><strong>Set-up Notifications on Selected Instances :</strong> This is only used once per instance. It will set-up notifications and e-mail address in your personal settings. It must be run at least once per instance.</li>
+								</ul>
+							</p>
+						</details>
+					</section>
+					<section>
+						<details class="alert alert-info" id="alert-info-en">
+						<summary class="h3">
+						<h3>Warning!</h3>
+						<p>Best check yourself, you're not looking too good.</p>
+						</summary>
+					</section>
+					<p>
+						<table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ajax": { "url": "./Data/servers.json", "dataSrc": "servers"}, "columns": [{"data": "name"}, {"data": "name"}, {"data": "address"}, {"data": "portfolio"}], "paging": false }' id="mainListOfServers">
+							<thead>
+								<tr>
+									<th scope="col">Select</th>
+									<th scope="col">Server Name</th>
+									<th scope="col">Server Address</th>
+									<th scope="col">Portfolio #</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</p>
+
+					<p>
+						<div class="form-group form-inline">
+							<label class="control-label" for="selectScope">Select for Portfolio: </label>
+							<select class="form-control" name="selectScope" id="selectScope">
+								<option value="0">All</option>
+							</select>
+							<button id="selectAll" class="btn btn-default ">Select</button>
+						</div>
+
+						<div class="form-group">
+							<button id="runHealthCheck" class="btn btn-primary">Run Health Check on Selected Instances</button>
+							<button id="runNotificionsSetUp" class="btn btn-default">Set-up Notifications on Selected Instances</button>
+						</div>
+					</p>
+
+					<section id="startedPleaseWait" class="mfp-hide modal-dialog modal-content overlay-def">
+						<header class="modal-header">
+							<h2 class="modal-title">Process has started...</h2>
+						</header>
+						<div class="modal-body">
+							<p>Please Wait...</p>
+						</div>
+					</section>
+
+				</details>
+				<details id="details-panel2">
+					<summary>Password Change</summary>
+					<div class="wb-frmvld">
+						<section>
+							<details class="alert alert-info" id="alert-info-en">
+								<summary class="h3">
+									<h3>Information for password changing</h3>
+								</summary>
+								<p>This page allows you to change your password on any GCDOCS instance. Since information is written to disk, you need to supply an enryption key that will be used in the process. This key will be asked again once inside of GCDOCS.</p>
+							</details>
+						</section>
+						<form class="form-inline" role="form" method="post" action="#" name="changePassword" id="changePassword">
+							<p>
+								<div class="form-group">
+									<label for="oldPassword"><span class="field-name">Old Password</span> <strong class="required">(required)</strong></label>
+									<input type="password" class="form-control" name="oldPassword" id="oldPassword" placeholder="Old Password" required="required" data-rule-minlength="4" />
+									<label for="keyPassword"><span class="field-name">Encryption Key</span> <strong class="required">(required)</strong></label></label>
+									<input type="password" class="form-control" name="keyPassword" id="keyPassword" placeholder="Encryption Key" required="required" data-rule-minlength="4" />
+								</div>
+								<div class="form-group">
+									<div class="form-group">
+										<label for="newPassword">New Password</label>
+										<input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Old Password" required="required" data-rule-minlength="4" />
+									<!--</div>
+									<div class="form-group">-->
+										<label for="confirmPassword">Confirm New Password</label>
+										<input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Old Password" required="required" data-rule-minlength="4" data-rule-equalTo="#newPassword"/>
+									</div>
+								</div>
+							</p>
+							<p>
+								<table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ajax": { "url": "./Data/servers.json", "dataSrc": "servers"}, "columns": [{"data": "name"}, {"data": "name"}, {"data": "address"}, {"data": "portfolio"}], "paging": false }' id="passwordChangeListOfServers">
+									<thead>
+										<tr>
+											<th scope="col">Select</th>
+											<th scope="col">Server Name</th>
+											<th scope="col">Server Address</th>
+											<th scope="col">Portfolio #</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</p>
+
+							<p>
+								<div class="form-group form-inline">
+									<label class="control-label" for="selectScopeTab2">Select for Portfolio: </label>
+									<select class="form-control" name="selectScopeTab2" id="selectScopeTab2">
+										<option value="0">All</option>
+									</select>
+									<button id="selectAllTab2" class="btn btn-default ">Select</button>
+								</div>
+							</p>
+
+							<p>
+								<div class="form-group">
+									<button class="btn btn-primary" type="submit" id="doUpdatePassword">Change Password on Selected Instances</button>
+								</div>
+							</p>
+						</form>
+					</div>
+				</details>
+				<details id="details-panel3">
+					<summary>Settings</summary>
+					<p>
+						<section>
+							<details class="alert alert-info" id="alert-info-en">
+								<summary class="h3">
+									<h3>Information for settings</h3>
+								</summary>
+								<p>This page is where you put in your accoutn information. Note that your GCDOCS password is encrypted. You must generate an encrypted password via the <strong>Generate Encrypted Password</strong> function. This encrypted password will be asked of you when you run the health check.</p>
+							</details>
+						</section>
+						<form role="form" method="post" action="#" name="settings" id="settings">
+							<div class="form-group">
+								<label for="aspUserName">ASP User Name</label>
+								<input type="text" class="form-control" name="aspUserName" id="aspUserName" placeholder="Enter 'asp.' account" />
+							</div>
+							<div class="form-group">
+								<label for="encryptedPassword">Encrypted Password</label>
+								<input type="text" class="form-control" name="encryptedPassword" id="encryptedPassword" placeholder="Encrypted Password" />
+								<p><a href="#centred-popup-modal" aria-controls="centred-popup" class="wb-lbx btn btn-default" role="button">Generate Encrypted Password</a></p>
+							</div>
+							<div class="form-group">
+								<label for="aspEmail">ASP E-Mail</label>
+								<input type="email" class="form-control" name="aspEmail" id="aspEmail" placeholder="Enter email" />
+							</div>
+
+							<button class="btn btn-primary" type="submit" id="saveSettings">Save Settings</button>
+						</form>
+
+						<section id="centred-popup-modal" class="mfp-hide modal-dialog modal-content overlay-def">
+							<header class="modal-header">
+								<h2 class="modal-title">Generate Encrypted Password</h2>
+							</header>
+							<div class="modal-body">
+								<div class="wb-frmvld">
+									<form role="form" method="post" action="#" name="generatePasswordForm" id="generatePasswordForm">
+										<div class="form-group">
+											<label for="masterPassword" class="required"><span class="field-name">Master Password</span> <strong class="required">(required)</strong></label>
+											<input type="password" class="form-control" name="masterPassword" id="masterPassword" placeholder="Master Password" required="required" data-rule-minlength="4" />
+										</div>
+										<div class="form-group">
+											<label for="gcdocsPassword" class="required"><span class="field-name">GCDOCS Password</span> <strong class="required">(required)</strong></label>
+											<input type="password" class="form-control" name="gcdocsPassword" id="gcdocsPassword" placeholder="GCDOCS Password" required="required" data-rule-minlength="4" />
+										</div>
+
+										<button class="btn btn-primary" type="button" id="doGeneratePassword">Generate</button>
+									</form>
+								</div>
+							</div>
+						</section>
+					</p>
+				</details>
+			</div>
+		</div>
+
+
+		<dl id="wb-dtmd">
+			<dt>Date modified:&#32;</dt>
+			<dd><time property="dateModified">2014-02-19</time></dd>
+		</dl>
+	</main>
+
+
+
+	<footer role="contentinfo" id="wb-info" class="visible-sm visible-md visible-lg wb-navcurr">
+	<div class="container">
+		<nav role="navigation">
+			<h2>About this site</h2>
+			<div class="row">
+				<section class="col-sm-3">
+	<h3>Contact us</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>About</h3>
+	<ul class="list-unstyled">
+		<li><a href="http://wet-boew.github.io/v4.0-ci/index-en.html#about">About the Web Experience Toolkit</a></li>
+		<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>News</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>Stay connected</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+	</ul>
+</section>
+
+			</div>
+			<ul id="gc-tctr" class="list-inline">
+	<li><a rel="license" href="http://wet-boew.github.io/wet-boew/License-en.html">Terms and conditions</a></li>
+	<li><a href="http://www.tbs-sct.gc.ca/tbs-sct/common/trans-eng.asp">Transparency</a></li>
+</ul>
+
+		</nav>
+	</div>
+</footer>
+
+
+		<!--[if gte IE 9 | !IE ]><!-->
+<script src="./js/jquery/2.1.4/jquery.js"></script>
+<script src="./Data/preWETInit.js"></script>
+<script src="./wet-boew/js/wet-boew.js"></script>
+<!--<![endif]-->
+
+
+<!--[if lt IE 9]>
+<script src="./wet-boew/js/ie8-wet-boew2.js"></script>
+
+<![endif]-->
+
+<script src="./theme-gc-intranet/js/theme.js"></script>
+
+<!-- health check specific files -->
+<script src="./Data/rijndael.js"></script>
+<script src="./Data/jquery.csv.js"></script> <!-- src=https://github.com/evanplaice/jquery-csv -->
+<script src="./Data/healthcheck.js"></script>
+<script src="./Data/iMacro/hcCommon.js"></script>
+<!-- end of health check specific files-->
+
+	</body>
+</html>

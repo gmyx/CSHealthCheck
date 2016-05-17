@@ -1,0 +1,8 @@
+﻿VERSION BUILD=8970419 RECORDER=FX
+SET !EXTRACT_TEST_POPUP NO
+FILEDELETE NAME="C:\\Users\\moreaug3\\Documents\\Health Check\\GCDOCS Health Check\\Data\\settings.csv"
+TAG POS=1 TYPE=A ATTR=ID:details-panel3-lnk
+TAG POS=1 TYPE=INPUT:TEXT FORM=ID:settings ATTR=ID:aspUserName EXTRACT=TXT
+TAG POS=1 TYPE=INPUT:TEXT FORM=ID:settings ATTR=ID:encryptedPassword EXTRACT=TXT
+TAG POS=1 TYPE=INPUT:EMAIL FORM=ID:settings ATTR=ID:aspEmail EXTRACT=TXT
+SAVEAS TYPE=EXTRACT FOLDER="C:\\Users\\moreaug3\\Documents\\Health Check\\GCDOCS Health Check\\Data" FILE=settings.csv
