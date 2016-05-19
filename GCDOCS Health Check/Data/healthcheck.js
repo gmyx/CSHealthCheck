@@ -119,7 +119,6 @@ $(document).on("wb-ready.wb", function() {
 			//data is less than optimal, but easy to clean up.
 			var lData = /"(.*)"/g.exec(data)[1];
 			var lItems = lData.split(",");
-			console.log(lData);
 
 			$.each(lItems, function (key, value) {
 				//find value in the tables and check it's box
@@ -135,13 +134,16 @@ $(document).on("wb-ready.wb", function() {
 		async: true,
 		success: function (csvd) {
 			gSettings = $.csv.toArrays(csvd);
-		},
-		dataType: "text",
-		complete: function () {
+
 			// call a function on complete
 			$("#aspUserName").val(gSettings[0][0])
 			$("#encryptedPassword").val(gSettings[0][1])
 			$("#aspEmail").val(gSettings[0][2])
+		},
+		error: function () {
+			// it failled to load, so go to this page
+			alert("You must fill out the settings tab before continuing.")
+			$(".wb-tabs").trigger({ type: "wb-shift.wb-tabs", shiftto: 2 });
 		}
 	});
 });
