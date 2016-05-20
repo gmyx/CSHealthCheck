@@ -1,5 +1,10 @@
 {
 	"servers": [{
+		"name": "SB1",
+		"address": "http://gcdocs-0000580.gcdocs.gc.ca/OTCS/cs.exe",
+		"helpdiv": "fulltextslices7DivId",
+		"portfolio": "SB"
+	}, {
 		"name": "PSPC",
 		"address": "https://gcdocs.gc.ca/tpsgc-pwgsc/llisapi.dll",
 		"helpdiv": "fulltextslices7DivId",

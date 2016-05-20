@@ -31,7 +31,7 @@
 		return realPath
 	}
 
-	function appendClientData(aForwardTo, aForwardData1, aForwardData2) {
+	function appendClientData(aForwardTo, aForwardData1, aForwardData2, aForwardData3) {
 		hcCommon.sysLog("Start appendClientData");
 		//load the settings.csv file
 		$.ajax({
@@ -52,7 +52,7 @@
 					"aspEmail": gSettings[0][2]
 				};
 
-				aForwardTo(aForwardData1, lOut, aForwardData2);
+				aForwardTo(aForwardData1, lOut, aForwardData2, aForwardData3);
 
 				hcCommon.sysLog("End appendClientData.ajax.complete");
 				return false;
@@ -152,6 +152,21 @@
 			return lItemsToCheck;
 
 		},
+		loadCRSubData: function(aCR, aCallback, aForwardData1) {
+			hcCommon.sysLog("Start hcCommon.loadCRSubData" );
+
+			//load the JSON file and get going
+			$.getJSON( "file://" + getSystemRealPath() + "/Data/iMacro/CRs/" + aCR + ".json", function( data ) {
+				hcCommon.sysLog("Start hcCommon.loadCRSubData.getJSON: " + data);
+
+				//send it to where it is wanted
+				aCallback(data, aForwardData1);
+
+				hcCommon.sysLog("End hcCommon.loadCRSubData.getJSON");
+			});
+
+			hcCommon.sysLog("End hcCommon.loadCRSubData");
+		},
 		loadCRData: function(aCallback) {
 			hcCommon.sysLog("Start hcCommon.loadCRData" );
 
@@ -176,7 +191,7 @@
 
 			hcCommon.sysLog("End hcCommon.loadCRData");
 		},
-		loadCheckedServerData: function(aCheckedItems, aCallback, aForwardData2) {
+		loadCheckedServerData: function(aCheckedItems, aCallback, aForwardData2, aForwardData3) {
 			hcCommon.sysLog("Start hcCommon.loadCheckedServerData: " + aCheckedItems);
 
 			//load the JSON file and get going
@@ -193,7 +208,7 @@
 				})
 
 				// append client data and then foward to the final destination
-				appendClientData(aCallback, lServerData, aForwardData2);
+				appendClientData(aCallback, lServerData, aForwardData2, aForwardData3);
 
 				hcCommon.sysLog("End hcCommon.loadCheckedServerData.getJSON");
 			});

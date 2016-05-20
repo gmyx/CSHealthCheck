@@ -3,6 +3,10 @@ function trimString(s) {
 }
 
 $(document).on("wb-ready.wb", function() {
+	setTimeout(function() {
+		window.location.replace('imacros://run/?m=HealthCheckScripts/CleanCSVs.js');
+	}, 2000); //wait 2 seconds
+
 	// callback(ish) function from iMacro
 	$("#hiddenCauseCloseBox").click(function () {
 		$("#hiddenCauseCloseBox").removeClass("show").addClass("hidden");
@@ -169,6 +173,24 @@ $(document).on("wb-ready.wb", function() {
 			$.each(lItems, function (key, value) {
 				//find value in the tables and check it's box
 				$("#passwordChangeListOfServers tbody tr td:contains('" + value + "')")
+					.parent().find("td input").prop("checked", true)
+			});
+		}
+	});
+
+	// same for others, just a different file
+	$.ajax({
+		url: "./Data/serversToCheck_otherListOfServers.csv",
+		async: true,
+		dataType: "text",
+		success: function (data) {
+			//data is less than optimal, but easy to clean up.
+			var lData = /"(.*)"/g.exec(data)[1];
+			var lItems = lData.split(",");
+
+			$.each(lItems, function (key, value) {
+				//find value in the tables and check it's box
+				$("#otherListOfServers tbody tr td:contains('" + value + "')")
 					.parent().find("td input").prop("checked", true)
 			});
 		}

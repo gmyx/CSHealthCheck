@@ -1,0 +1,12 @@
+{
+	"col6": [
+		{"SB1": "[SB1] Notification du serveur GCDocs - GCDOCS server notification at %1"},
+		{"CRA": "[ARC-CRA] Notification du serveur GCDocs - GCDOCS server notification at %1"},
+		{"VAC": "[VETERANS] Notification du serveur GCDocs - GCDOCS server notification at %1"}
+	],
+	"col7": [
+		{"SB1": "SB1 Notification GCDocs – UAT GCDOCS Notification at %1"},
+		{"CRA": "[ARC-CRA] Notification du serveur GCDocs - GCDOCS server notification at %1"},
+		{"VAC": "[VETERANS] Notification du serveur GCDocs - GCDOCS server notification at %1"}
+	]
+}

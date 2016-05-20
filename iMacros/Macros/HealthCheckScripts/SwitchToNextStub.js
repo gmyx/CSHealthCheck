@@ -59,11 +59,11 @@ function loadScriptFromURL(url) {
 	//determine which script to foward to
 	var lVars = getUrlVars()
 	window.console.log(lVars)
-	tmpsysLog("End SwitchToNextStub anonymous function")
 
 	//load that file
 	hcCommon.loadJS('file://' + realPath + '/Data/iMacro/' + lVars.nextScript + '.js');
 
 	//send execution that that file.
 	nextScript.nextScriptExecute(lVars.next, lVars.max, lVars.nextScript, lVars.lastPage, lVars.CSVFile, lVars.IIM) // that script needs to know what to do
+	tmpsysLog("End SwitchToNextStub anonymous function")
 })();

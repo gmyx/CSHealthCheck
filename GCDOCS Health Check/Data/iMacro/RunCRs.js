@@ -5,7 +5,7 @@ hcCommon.sysLog("Start RunCRs.js");
 	var lCSVFile = "CRsRun.csv"
 	var lStartingAddress = window.location.href;
 
-	function doContinueLast(aServer, aClientData, aCRData) {
+	function doContinueLast(aServer, aClientData, aCRData, aCRSubData) {
 		hcCommon.sysLog("Start RunCRs.doContinueLast:" + aServer);
 		var lMax = 0;
 		$.each(aServer, function(key, value) {
@@ -18,8 +18,30 @@ hcCommon.sysLog("Start RunCRs.js");
 			iimSet("VAR3", aClientData.aspEmail); //var 3 is asp E-MAIL
 			iimSet("VAR4", aClientData.encryptedPassword); //var 4 is encrypted password
 
-			//CR specific varialbes - not yet implemented
-			iimSet("VAR7", 'file://' + hcCommon.getRealPath() + '/iMacro/CRs/' + aCRData[0].script);
+			//CR specific varialbes - var 6
+			if (aCRSubData.col6 !== undefined) {
+				// see if col6 has server in it
+				$.each (aCRSubData.col6[0], function(aSubKey, aSubvalue) {
+					//window.alert (aSubKey + " .. " + aSubvalue)
+					if (value.name == aSubKey) {
+						iimSet("VAR6", aSubvalue); //var 6
+					}
+				});
+			}
+
+			//CR specific varialbes - var 7
+			if (aCRSubData.col7 !== undefined) {
+				// see if col6 has server in it
+				$.each (aCRSubData.col7[0], function(aSubKey, aSubvalue) {
+					//window.alert (aSubKey + " .. " + aSubvalue)
+					if (value.name == aSubKey) {
+						iimSet("VAR7", aSubvalue); //var 7
+					}
+				});
+			}
+
+			//iimSet("VAR7", 'file://' + hcCommon.getRealPath() + 'Data/iMacro/CRs/' + aCRData[0].script);
+			iimSet("VAR8", $("#hiddenEncPass").val()); // encrypted admin index password
 
 			//system specific vars are next
 			iimSet("VAR5", value.address); // var 5 is URL
@@ -36,16 +58,15 @@ hcCommon.sysLog("Start RunCRs.js");
 		iimSet("VAR1", 1); //datasource line (usually current index +1 )
 		iimSet("VAR2", 'file://' + hcCommon.getRealPath() + 'gotoNext.html?next=' + 1 + "&max=" + lMax +
 			"&nextScript=HealthCheckContinue&lastPage=" + lStartingAddress +
-			"&CSVFile=" + lCSVFile + "&IIM=RunCRs");
+			"&CSVFile=" + lCSVFile + "&IIM=CRS/" + aCRData[0].script);
 
-		//iimPlay(getPathForIMacro() + "/Data/iMacro/RunCRs.iim");
+		iimPlay(getPathForIMacro() + "/Data/iMacro/CRs/" + aCRData[0].script);
 
 		// our story continues in another .js file...
 	}
 
-	function doContinueFirst(aCRData) {
-		hcCommon.sysLog("Start RunCRs.doContinueFirst");
-		window.alert(JSON.stringify(aCRData))
+	function doContinueWithSubData(aData, aCRData) {
+		hcCommon.sysLog("Start RunCRs.doContinueWithSubData");
 
 		// get the cheked items
 		var lItemsToCheck = hcCommon.getCheckedServers(lTabName);
@@ -53,8 +74,23 @@ hcCommon.sysLog("Start RunCRs.js");
 		//save them
 		hcCommon.saveCheckedServers(lItemsToCheck, lTabName);
 
-		//load the JSON file and get going
-		hcCommon.loadCheckedServerData(lItemsToCheck, doContinueLast, aCRData);
+		//load the servers JSON file and get going
+		hcCommon.loadCheckedServerData(lItemsToCheck, doContinueLast, aCRData, aData);
+
+		hcCommon.sysLog("End RunCRs.doContinueWithSubData");
+	}
+
+	// we have the base CR data
+	function doContinueFirst(aCRData) {
+		hcCommon.sysLog("Start RunCRs.doContinueFirst");
+
+		//see if cr has data to be merged
+		if (aCRData[0].data !== undefined) {
+			hcCommon.loadCRSubData(aCRData[0].data, doContinueWithSubData, aCRData);
+		} else {
+			doContinueWithSubData("", aCRData[0]);
+		}
+		hcCommon.sysLog("End RunCRs.doContinueFirst");
 	}
 
 	// get CRs
