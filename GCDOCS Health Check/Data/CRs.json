@@ -1,0 +1,7 @@
+{
+	"CRs": [{
+		"id": "2016-0254",
+		"script": "2016-0254.iim",
+		"needAdminIndexPWD":true
+	}]
+}

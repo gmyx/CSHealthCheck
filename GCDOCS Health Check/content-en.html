@@ -277,11 +277,80 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 										</div>
 
 										<button class="btn btn-primary" type="button" id="doGeneratePassword">Generate</button>
+										<button class="btn btn-default" type="button" id="cancelGeneratePassword">Cancel</button>
 									</form>
 								</div>
 							</div>
 						</section>
 					</p>
+				</details>
+				<details id="details-panel4">
+					<summary>Other</summary>
+					<p>
+						<table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ajax": { "url": "./Data/servers.json", "dataSrc": "servers"}, "columns": [{"data": "name"}, {"data": "name"}, {"data": "address"}, {"data": "portfolio"}], "paging": false }' id="otherListOfServers">
+							<thead>
+								<tr>
+									<th scope="col">Select</th>
+									<th scope="col">Server Name</th>
+									<th scope="col">Server Address</th>
+									<th scope="col">Portfolio #</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</p>
+					<p>
+						<div class="form-group form-inline">
+							<label class="control-label" for="selectScopeOthers">Select for Portfolio: </label>
+							<select class="form-control" name="selectScopeOthers" id="selectScopeOthers">
+								<option value="0">All</option>
+							</select>
+							<button id="selectAllOthers" class="btn btn-default ">Select</button>
+						</div>
+
+						<div class="form-group form-inline">
+							<label class="control-label" for="AvailableCRs">Available CRs: </label>
+							<select class="form-control" name="AvailableCRs" id="AvailableCRs">
+								<option value="0">All</option>
+							</select>
+							<button id="applyCRs" class="btn btn-primary">Apply CR</button>
+							<input type="hidden" name="hiddenEncPass" id="hiddenEncPass" />
+						</div>
+					</p>
+					<p>
+						<div class="form-group">
+							<button id="getAdminLinks" class="btn btn-primary">Get Admin Links</button>
+						</div>
+					</p>
+						<section id="centred-popup-modal-index-password" class="mfp-hide modal-dialog modal-content overlay-def">
+							<header class="modal-header">
+								<h2 class="modal-title">This CR requires the admin.index password</h2>
+							</header>
+							<div class="modal-body">
+								<div class="wb-frmvld">
+									<form role="form" method="post" action="#" name="generateAdminIndexForm" id="generateAdminIndexForm">
+										<div class="form-group">
+											<label for="crMasterPassword" class="required"><span class="field-name">CR Master Password</span> <strong class="required">(required)</strong></label>
+											<input type="password" class="form-control" name="crMasterPassword" id="crMasterPassword" placeholder="CR Master Password" required="required" data-rule-minlength="4" />
+										</div>
+										<div class="form-group">
+											<label for="adminindexPassword" class="required"><span class="field-name">admin.index Password</span> <strong class="required">(required)</strong></label>
+											<input type="password" class="form-control" name="adminindexPassword" id="adminindexPassword" placeholder="admin.index Password" required="required" data-rule-minlength="4" />
+										</div>
+
+										<button class="btn btn-primary" type="button" id="doCRGeneratePassword">Generate</button>
+										<button class="btn btn-default" type="button" id="cancelCRGeneratePassword">Cancel</button>
+									</form>
+								</div>
+							</div>
+						</section>
 				</details>
 			</div>
 		</div>

@@ -31,7 +31,7 @@
 		return realPath
 	}
 
-	function appendClientData(aForwardTo, aForwardData) {
+	function appendClientData(aForwardTo, aForwardData1, aForwardData2) {
 		hcCommon.sysLog("Start appendClientData");
 		//load the settings.csv file
 		$.ajax({
@@ -52,7 +52,7 @@
 					"aspEmail": gSettings[0][2]
 				};
 
-				aForwardTo(aForwardData, lOut);
+				aForwardTo(aForwardData1, lOut, aForwardData2);
 
 				hcCommon.sysLog("End appendClientData.ajax.complete");
 				return false;
@@ -152,7 +152,31 @@
 			return lItemsToCheck;
 
 		},
-		loadCheckedServerData: function(aCheckedItems, aCallback) {
+		loadCRData: function(aCallback) {
+			hcCommon.sysLog("Start hcCommon.loadCRData" );
+
+			//load the JSON file and get going
+			$.getJSON( "file://" + getSystemRealPath() + "/Data/CRs.json", function( data ) {
+				hcCommon.sysLog("Start hcCommon.loadCRData.getJSON: " + data);
+				var lCRs = [];
+
+				$.each(data.CRs, function (key, val) {
+					// see if we need this data
+					//if (aCheckedItems.indexOf(val.id) > -1) {
+						// add this server to the list
+						lCRs.push(val);
+					//}
+				})
+
+				// append client data and then foward to the final destination
+				aCallback(lCRs);
+
+				hcCommon.sysLog("End hcCommon.loadCRData.getJSON");
+			});
+
+			hcCommon.sysLog("End hcCommon.loadCRData");
+		},
+		loadCheckedServerData: function(aCheckedItems, aCallback, aForwardData2) {
 			hcCommon.sysLog("Start hcCommon.loadCheckedServerData: " + aCheckedItems);
 
 			//load the JSON file and get going
@@ -169,7 +193,7 @@
 				})
 
 				// append client data and then foward to the final destination
-				appendClientData(aCallback,lServerData);
+				appendClientData(aCallback, lServerData, aForwardData2);
 
 				hcCommon.sysLog("End hcCommon.loadCheckedServerData.getJSON");
 			});

@@ -34,6 +34,52 @@ $(document).on("wb-ready.wb", function() {
 		return false;
 	})
 
+	//cancel buttons from popups
+	$("#cancelGeneratePassword,#cancelCRGeneratePassword").click(function() {
+		$.magnificPopup.close();
+	});
+
+	// others tab
+	$("#getAdminLinks").click(function () {
+		//these scripts need to be in the iMacro folder, but any called scripts from there run from anywhere
+		window.location.replace('imacros://run/?m=HealthCheckScripts/GetAllItemsStub.js');
+	})
+
+	// apply crs functions
+	function docontinueApplyCRs() {
+		window.location.replace('imacros://run/?m=HealthCheckScripts/RunCRStub.js');
+	}
+
+	$("#applyCRs").click(function () {
+		//see if this cr requires the admin password
+		if ($("#AvailableCRs").find(':selected').attr('data-require-admin') === "true") {
+			wb.doc.trigger( "open.wb-lbx", [[{
+				src: "#centred-popup-modal-index-password",
+				type: "inline"}
+			], true]);
+
+		} else {
+			//these scripts need to be in the iMacro folder, but any called scripts from there run from anywhere
+			docontinueApplyCRs();
+		}
+	})
+
+	$("#doCRGeneratePassword").click(function () {
+		$("#generateAdminIndexForm").validate();
+		if ($("#generateAdminIndexForm").valid() === true) {
+			// assing to a window var so that iMacro JS can access
+			$("#hiddenEncPass").val(
+				Rijndael.encryptString(
+					trimString($("#adminindexPassword").val()),
+					trimString($("#crMasterPassword").val())
+				));
+
+			$.magnificPopup.close();
+
+			docontinueApplyCRs();
+		}
+	});
+
 	//save function requires iMacro to do the save - JS can't
 	$("#settings").submit(function() {
 		$("#settings").validate();
@@ -132,16 +178,22 @@ $(document).on("wb-ready.wb", function() {
 	$.ajax({
 		url: "./Data/settings.csv",
 		async: true,
+		dataType: "text",
 		success: function (csvd) {
 			gSettings = $.csv.toArrays(csvd);
-
-			// call a function on complete
-			$("#aspUserName").val(gSettings[0][0])
-			$("#encryptedPassword").val(gSettings[0][1])
-			$("#aspEmail").val(gSettings[0][2])
 		},
-		error: function () {
+		complete: function() {
+			if (typeof gSettings !== 'undefined') {
+				// call a function on complete
+				$("#aspUserName").val(gSettings[0][0]);
+				$("#encryptedPassword").val(gSettings[0][1]);
+				$("#aspEmail").val(gSettings[0][2]);
+			}
+		},
+		error: function (jqXHR, textStatus,  errorThrown) {
 			// it failled to load, so go to this page
+			console.log(jqXHR);
+			console.log( " from " + textStatus + " : " + errorThrown);
 			alert("You must fill out the settings tab before continuing.")
 			$(".wb-tabs").trigger({ type: "wb-shift.wb-tabs", shiftto: 2 });
 		}
