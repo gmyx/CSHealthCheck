@@ -142,6 +142,22 @@ $(document).on("wb-ready.wb", function() {
 		});
 	});
 
+	// select the rows according to the option box, for tab 4
+	$("#selectAllOthers").click(function () {
+		var lOption = $("#selectScopeOthers").val()
+
+		$("#otherListOfServers tbody tr").each(function () {
+			if (lOption === "0") {
+				$(this).find("input").prop({"checked": true})
+			} else if ($(this).find("td:eq(3)").text() === lOption) {
+				$(this).find("input").prop({"checked": true})
+			} else {
+				$(this).find("input").prop({"checked": false})
+			}
+		});
+	});
+
+
 	//load the to check file, and check the correct boxes
 	$.ajax({
 		url: "./Data/serversToCheck_mainListOfServers.csv",
@@ -220,5 +236,9 @@ $(document).on("wb-ready.wb", function() {
 			$(".wb-tabs").trigger({ type: "wb-shift.wb-tabs", shiftto: 2 });
 		}
 	});
+
+	$("#getAdminLinks").click(function () {
+		window.location.replace('imacros://run/?m=otherGCScripts/getLinks.js');
+	})
 });
 

@@ -9,7 +9,7 @@ hcCommon.sysLog("Start RunCRs.js");
 		hcCommon.sysLog("Start RunCRs.doContinueLast:" + aServer);
 		var lMax = 0;
 		$.each(aServer, function(key, value) {
-			hcCommon.sysLog("Start RunCRs.doContinueLast.each:" + key + " & " + value);
+			hcCommon.sysLog("Start RunCRs.doContinueLast.each:" + key + " & " + JSON.stringify(value));
 			iimSet("VAR0", hcCommon.getCleanIMacroPath());
 			iimSet("VAR1", lCSVFile);
 
@@ -21,10 +21,10 @@ hcCommon.sysLog("Start RunCRs.js");
 			//CR specific varialbes - var 6
 			if (aCRSubData.col6 !== undefined) {
 				// see if col6 has server in it
-				$.each (aCRSubData.col6[0], function(aSubKey, aSubvalue) {
-					//window.alert (aSubKey + " .. " + aSubvalue)
-					if (value.name == aSubKey) {
-						iimSet("VAR6", aSubvalue); //var 6
+				$.each (aCRSubData.col6, function(aSubKey, aSubvalue) {
+					//window.alert (aSubKey + " .. " + aSubvalue.Name + " .. "  + JSON.stringify(aSubvalue))
+					if (value.name == aSubvalue.Name) {
+						iimSet("VAR6", aSubvalue.Value); //var 6
 					}
 				});
 			}
@@ -32,10 +32,10 @@ hcCommon.sysLog("Start RunCRs.js");
 			//CR specific varialbes - var 7
 			if (aCRSubData.col7 !== undefined) {
 				// see if col6 has server in it
-				$.each (aCRSubData.col7[0], function(aSubKey, aSubvalue) {
-					//window.alert (aSubKey + " .. " + aSubvalue)
-					if (value.name == aSubKey) {
-						iimSet("VAR7", aSubvalue); //var 7
+				$.each (aCRSubData.col7, function(aSubKey, aSubvalue) {
+					//window.alert (aSubKey + " .. " + aSubvalue.Name + " .. "  + JSON.stringify(aSubvalue))
+					if (value.name == aSubvalue.Name) {
+						iimSet("VAR7", aSubvalue.Value); //var 7
 					}
 				});
 			}

@@ -62,12 +62,12 @@ var Rijndael = (function () {
 
 
     // The number of rounds for the cipher, indexed by [Nk][Nb]
-    var roundsArray = [ ,,,,[,,,,10,, 12,, 14],,
-        [,,,,12,, 12,, 14],,
-        [,,,,14,, 14,, 14] ];
+    var roundsArray = [ 0,0,0,0,[0,0,0,0,10,0, 12,0, 14],0,
+        [0,0,0,0,12,0, 12,0, 14],0,
+        [0,0,0,0,14,0, 14,0, 14] ];
 
     // The number of bytes to shift by in shiftRow, indexed by [Nb][row]
-    var shiftOffsets = [ ,,,,[,1, 2, 3],,[,1, 2, 3],,[,1, 3, 4] ];
+    var shiftOffsets = [ 0,0,0,0,[0,1, 2, 3],0,[0,1, 2, 3],0,[0,1, 3, 4] ];
 
     // The round constants used in subkey expansion
     var Rcon = [
